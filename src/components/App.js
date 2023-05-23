@@ -1,48 +1,14 @@
-import logo from './images/logo.svg';
-import avatar from './images/avatar.jpg';
-import deleteIcon from './images/deleteIcon.svg';
+import deleteIcon from '../images/deleteIcon.svg';
+import Footer from './Footer';
+import Header from './Header';
+import Main from './Main';
 
 function App() {
   return (
     <body className="page">
-      <header className="header">
-        <img src={logo} alt="Место, логотип." className="header__logo" />
-      </header>
-      <main>
-        <section className="profile">
-          <div className="profile__info-wrapper">
-            <div className="profile__avatar-wrapper">
-              <img src={avatar} alt="Фото профиля" className="profile__avatar" />
-              <button type="button" className="profile__update-avatar"></button>
-
-            </div>
-            <div className="profile__info">
-              <div className="profile__name-wrapper">
-                <h1 className="profile__name">Алексей</h1>
-                <button className="profile__edit-button hoverable" type="button"
-                  aria-label="Редактировать профиль"></button>
-              </div>
-              <p className="profile__about">Фрилансер, инфлюенсер</p>
-            </div>
-          </div>
-
-          <button className="profile__add-button hoverable" type="button" aria-label="Кнопка добавить фото"></button>
-        </section>
-
-        <section aria-label="Места">
-          <ul className="cards">
-
-          </ul>
-        </section>
-      </main>
-
-      <footer className="footer">
-        <p lang="en">
-          <span>&copy; 2023 Mesto Russia &#215;</span>
-          <a href="https://t.me/kznv_alex" className="footer__link hoverable hoverable_level_low" target="_blank"
-            rel="noopener noreferrer">Alex Kuznetsov</a>
-        </p>
-      </footer>
+      <Header />
+      <Main />
+      <Footer />
 
       <div className="popup popup_type_edit">
         <div className="popup__container">
