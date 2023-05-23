@@ -1,6 +1,6 @@
 import React from 'react';
 import PopupWithForm from './PopupWithForm';
-import PopupWithImage from './PopupWithImage';
+import ImagePopup from './ImagePopup';
 import Card from './Card';
 
 const Main = (props) => {
@@ -67,9 +67,9 @@ const Main = (props) => {
                 <button type="submit" className="popup__submit-button hoverable hoverable_level_low">Создать</button>
             </PopupWithForm>
 
-            <PopupWithImage name="delete" title="Вы уверены?" selectedCard={props.selectedCard} isOpen={props.isViewPopupOpened}  onClose={props.onClose}>
+            <ImagePopup name="delete" title="Вы уверены?" selectedCard={props.selectedCard} isOpen={props.isViewPopupOpened}  onClose={props.onClose}>
                 <button type="button" className="popup__submit-button popup__submit-button_type_marginless hoverable hoverable_level_low">Удалить</button>
-            </PopupWithImage>
+            </ImagePopup>
 
             <PopupWithForm name="avatar" title="Обновить аватар" isOpen={props.isEditAvatarPopupOpened} onClose={props.onClose}>
                 <label>

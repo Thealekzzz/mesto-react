@@ -1,6 +1,6 @@
 import React from 'react';
 
-const PopupWithImage = (props) => {
+const ImagePopup = (props) => {
     return (
         <div className={`popup popup_type_view ${props.isOpen && "popup_opened"}`}>
             <div className="popup__container popup__container_type_view">
@@ -15,4 +15,4 @@ const PopupWithImage = (props) => {
     );
 };
 
-export default PopupWithImage;
+export default ImagePopup;
