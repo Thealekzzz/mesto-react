@@ -1,34 +1,88 @@
+import { useEffect, useState } from 'react';
 import Footer from './Footer';
 import Header from './Header';
 import Main from './Main';
+import api from '../utils/api';
 
 function App() {
+  let [isEditProfilePopupOpened, setIsEditProfilePopupOpened] = useState(false);
+  let [isAddPlacePopupOpened, setIsAddPlacePopupOpened] = useState(false);
+  let [isEditAvatarPopupOpened, setIsEditAvatarPopupOpened] = useState(false);
+  let [isViewPopupOpened, setIsViewPopupOpened] = useState(false);
+
+  let [userName, setUserName] = useState(""); 
+  let [userDescription, setUserDescription] = useState(""); 
+  let [userAvatar, setUserAvatar] = useState("");
+
+  let [cards, setCards] = useState([]);
+
+  let [selectedCard, setSelectedCard] = useState({})
+
+
   function handleEditAvatarClick() {
-      const avatarPopupElement = document.querySelector(".popup_type_avatar");
-      console.log(avatarPopupElement);
-      
-      avatarPopupElement.classList.add("popup_opened");
+    setIsEditAvatarPopupOpened(true);
   }
 
   function handleEditProfileClick() {
-      const editPopupElement = document.querySelector(".popup_type_edit");
-      console.log(editPopupElement);
-      
-      editPopupElement.classList.add("popup_opened");
+    setIsEditProfilePopupOpened(true);
   }
 
   function handleAddPlaceClick() {
-      const placePopupElement = document.querySelector(".popup_type_new-place");
-      console.log(placePopupElement);
-      
-      placePopupElement.classList.add("popup_opened");
+    setIsAddPlacePopupOpened(true);
   }
+
+  function handleCardClick(cardData) {
+    setIsViewPopupOpened(true);
+    setSelectedCard(cardData);
+  }
+
+  function closeAllPopups() {
+    setIsAddPlacePopupOpened(false);
+    setIsEditAvatarPopupOpened(false);
+    setIsEditProfilePopupOpened(false);
+    setIsViewPopupOpened(false);
+
+    setSelectedCard({});
+  }
+
+  useEffect(() => {
+    api.getUserData()
+    .then(data => {
+      setUserName(data.name);
+      setUserDescription(data.about);
+      setUserAvatar(data.avatar);
+    })
+    .catch(err => {
+      console.log("Ошибка получения данных пользователя");
+    });
+
+    api.getInitialCards()
+    .then(cards => {
+      setCards(cards);
+    })
+    .catch(err => {
+      console.log("Ошибка получения фотографий");
+    });
+  }, [])
 
 
   return (
     <div className="page">
       <Header />
-      <Main onEditProfile={handleEditProfileClick} onAddPlace={handleAddPlaceClick} onEditAvatar={handleEditAvatarClick}/>
+      <Main 
+        onEditProfile={handleEditProfileClick} 
+        onAddPlace={handleAddPlaceClick} 
+        onEditAvatar={handleEditAvatarClick}
+        onCardClick={handleCardClick}
+        isAddPlacePopupOpened={isAddPlacePopupOpened}
+        isEditAvatarPopupOpened={isEditAvatarPopupOpened}
+        isEditProfilePopupOpened={isEditProfilePopupOpened}
+        isViewPopupOpened={isViewPopupOpened}
+        onClose={closeAllPopups}
+        userData={{name: userName, description: userDescription, avatar: userAvatar}}
+        cards={cards}
+        selectedCard={selectedCard}
+      />
       <Footer />
     </div>
   );
