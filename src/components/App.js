@@ -79,7 +79,7 @@ function App() {
       />
       <Footer />
 
-      <PopupWithForm name="edit" title="Редактировать профиль" isOpen={isEditProfilePopupOpened} onClose={closeAllPopups}>
+      <PopupWithForm name="edit" title="Редактировать профиль" isOpen={isEditProfilePopupOpened} onClose={closeAllPopups} buttonText="Сохранить">
         <label>
           <input required minLength="2" maxLength="40" type="text" className="popup__input popup__input_data_name" id="input-name" name="name" placeholder="Имя" />
           <span className="popup__input-error input-name-error"></span>
@@ -89,11 +89,9 @@ function App() {
           <input required minLength="2" maxLength="200" type="text" className="popup__input popup__input_data_about" id="input-about" name="about" placeholder="О себе" />
           <span className="popup__input-error input-about-error"></span>
         </label>
-
-        <button type="submit" className="popup__submit-button hoverable hoverable_level_low">Сохранить</button>
       </PopupWithForm>
 
-      <PopupWithForm name="new-place" title="Новое место" isOpen={isAddPlacePopupOpened} onClose={closeAllPopups}>
+      <PopupWithForm name="new-place" title="Новое место" isOpen={isAddPlacePopupOpened} onClose={closeAllPopups} buttonText="Создать">
         <label>
           <input required minLength="2" maxLength="30" type="text" className="popup__input popup__input_data_title" id="input-title" name="name" placeholder="Название" />
           <span className="popup__input-error input-title-error"></span>
@@ -104,19 +102,17 @@ function App() {
           <input required type="url" className="popup__input popup__input_data_image-url" id="new-place-url" name="link" placeholder="Ссылка на картинку" />
           <span className="popup__input-error new-place-url-error"></span>
         </label>
-        <button type="submit" className="popup__submit-button hoverable hoverable_level_low">Создать</button>
       </PopupWithForm>
 
       <ImagePopup name="delete" title="Вы уверены?" selectedCard={selectedCard} onClose={closeAllPopups}>
         <button type="button" className="popup__submit-button popup__submit-button_type_marginless hoverable hoverable_level_low">Удалить</button>
       </ImagePopup>
 
-      <PopupWithForm name="avatar" title="Обновить аватар" isOpen={isEditAvatarPopupOpened} onClose={closeAllPopups}>
+      <PopupWithForm name="avatar" title="Обновить аватар" isOpen={isEditAvatarPopupOpened} onClose={closeAllPopups} buttonText="Сохранить">
         <label>
           <input required type="url" className="popup__input popup__input_data_image-url" id="avatar-url" name="link" placeholder="Ссылка на аватар" />
           <span className="popup__input-error avatar-url-error"></span>
         </label>
-        <button type="submit" className="popup__submit-button hoverable hoverable_level_low">Сохранить</button>
       </PopupWithForm>
     </div>
   );
