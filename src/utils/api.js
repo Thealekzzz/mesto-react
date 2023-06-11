@@ -51,6 +51,16 @@ class Api {
         return this._checkResponce(res);
     }
 
+    async changeLikeCardStatus(cardId, status) {
+        const method = status ? "PUT" : "DELETE";
+        const res = await fetch(`${this.baseUrl}/cards/${cardId}/likes`, {
+            method,
+            headers: this.headers,
+        });
+
+        return this._checkResponce(res);
+    }
+
     async likeCard(cardId) {
         const res = await fetch(`${this.baseUrl}/cards/${cardId}/likes`, {
             method: "PUT",
