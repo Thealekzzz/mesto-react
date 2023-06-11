@@ -12,6 +12,7 @@ import EditProfilePopup from './EditProfilePopup';
 import EditAvatarPopup from './EditAvatarPopup';
 import AddPlacePopup from './AddPlacePopup';
 import ConfirmPopup from './ConfirmPopup';
+
 import ValidationOptionsContext from '../contexts/ValidationOptionsContext';
 
 function App() {
@@ -70,6 +71,9 @@ function App() {
     api.changeLikeCardStatus(card._id, !isLiked)
       .then(newCard => {
         setCards((state) => state.map((c) => c._id === card._id ? newCard : c));
+      })
+      .catch(err => {
+        console.log("Ошибка обновления данных о лайке");
       });
   }
 
@@ -81,7 +85,7 @@ function App() {
         setCardToDelete({});
         closeAllPopups();
       })
-      .catch((err) => {
+      .catch(err => {
         console.log("Ошибка удаления карточки");
       })
       .finally(() => {
@@ -97,7 +101,7 @@ function App() {
         setCurrentUser(data);
         closeAllPopups();
       })
-      .catch((err) => {
+      .catch(err => {
         console.log("Ошибка обновления данных пользователя");
 
       })
@@ -128,7 +132,7 @@ function App() {
         setCards(prev => [data, ...prev]);
         closeAllPopups();
       })
-      .catch((err) => {
+      .catch(err => {
         console.log("Ошибка добавления карточки");
       })
       .finally(() => {
